@@ -30,7 +30,7 @@ public abstract class Utility {
 	public static String mainUrl = "http://control.msg91.com/api/sendotp.php?";
 
 	public static long getOtp() {
-		return random.nextInt(9999);
+		return random.nextInt(9999)+1000;
 	}
 
 	public static User sendOtp(User user) throws UnirestException {
@@ -47,6 +47,8 @@ public abstract class Utility {
 		sbPostData.append("&otp=" + user.getOtp());
 
 		JSONObject jsonObject = Unirest.post(sbPostData.toString()).asJson().getBody().getArray().getJSONObject(0);
+
+		System.out.println(jsonObject.toString());
 
 		if (jsonObject.getString("type").equalsIgnoreCase("success")) {
 			user.setMobileVerified("pending");

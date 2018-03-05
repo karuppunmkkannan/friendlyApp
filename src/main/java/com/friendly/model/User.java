@@ -34,14 +34,14 @@ public class User implements Serializable {
 
 	private String emailVerified;
 	
-	private String status;
+	private String userStatus;
 
 	public String getStatus() {
-		return status;
+		return userStatus;
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		this.userStatus = status;
 	}
 
 	public String getEmailVerified() {

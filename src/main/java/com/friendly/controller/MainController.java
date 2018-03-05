@@ -50,7 +50,7 @@ public class MainController {
 			User ouser = userservice.findUserOne(user);
 			if (ouser != null && ouser.getEmail().equalsIgnoreCase(user.getEmail())) {
 				if (ouser.getMobileVerified().equalsIgnoreCase("success")) {
-					modelMap.addAttribute("status", "OK");
+					modelMap.addAttribute("status", "success");
 					modelMap.addAttribute("message", "User already exists");
 					modelMap.addAttribute("data", ouser);
 				} else {
@@ -77,8 +77,8 @@ public class MainController {
 		try {
 			User ouser = userservice.findUserOne(user);
 			if (ouser != null && ouser.getEmail().equalsIgnoreCase(user.getEmail())
-					&& ouser.getOtp() == user.getOtp()) {
-				modelMap.addAttribute("status", "OK");
+					&& (ouser.getMobileVerified().equalsIgnoreCase("success") || ouser.getOtp() == user.getOtp())) {
+				modelMap.addAttribute("status", "success");
 				modelMap.addAttribute("message", "Suceesfully user logged..");
 				ouser.setMobileVerified("success");
 				modelMap.addAttribute("data", userservice.insertUserService(ouser));
