@@ -136,7 +136,7 @@ public class DummyTest {
 			User user = new User();
 
 			user.setEmail("nmk@gmail.com");
-			user.setMobileNumber("8110964676");
+			user.setMobileNumber("9543494451");
 			user.setOtp(String.valueOf(random.nextInt(9999)));
 			user.setUserName("Nmkkannan");
 
