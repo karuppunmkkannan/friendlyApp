@@ -1,16 +1,25 @@
 
 package com.friendly.test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.friendly.model.ResponseObject;
 import com.friendly.model.User;
 import com.friendly.utility.Utility;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 
@@ -20,13 +29,41 @@ import com.mashape.unirest.request.HttpRequestWithBody;
  *
  */
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@Component
 public class DummyTest {
 
 	public static Random random = new Random();
 
+	public static Gson gson = new Gson();
+
 	private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
 	private static Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+
+	class MySort implements Comparator<Integer> {
+		public int compare(Integer x, Integer y) {
+			return y.compareTo(x);
+		}
+	}
+
+	@Test
+	public void testWebSockets() {
+
+		try {
+			System.out.print(" nmk ");
+			Integer[] primes = { 2, 7, 5, 3 };
+			MySort ms = new MySort();
+			Arrays.sort(primes, ms);
+			for (Integer p2 : primes) {
+				System.out.print(p2 + " ");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Test
 	public void testEmail() {
@@ -57,14 +94,50 @@ public class DummyTest {
 	}
 
 	@Test
+	public void testsnumberString() {
+
+		ArrayList<String> m = new ArrayList<>();
+		m.add("9543494451");
+
+		ResponseObject object = new ResponseObject();
+
+		object.setUserLists(m);
+
+		System.out.println(gson.toJson(object));
+
+		System.out.println(gson.toJson(m, new TypeToken<ArrayList<String>>() {
+		}.getType()));
+
+		String num = "+91 954 3494 451";
+
+		num = num.replaceAll("\\s+", "");
+
+		if (num.startsWith("+")) {
+			num = num.substring(3);
+		}
+
+		System.out.println(num);
+
+		if (num.matches("[0-9]+") && num.length() == 10) {
+			System.out.println(num);
+		}
+	}
+
+	@Test
+	public void tests() {
+
+	}
+
+	@Test
+	@Ignore
 	public void testJob() {
 		try {
 
 			User user = new User();
 
-			user.setEmail("mariselvi@altrockstech.com");
-			user.setMobileNumber("8754993094");
-			user.setOtp(random.nextInt(9999));
+			user.setEmail("nmk@gmail.com");
+			user.setMobileNumber("8110964676");
+			user.setOtp(String.valueOf(random.nextInt(9999)));
 			user.setUserName("Nmkkannan");
 
 			String mainUrl = "http://control.msg91.com/api/sendotp.php?";
@@ -74,7 +147,7 @@ public class DummyTest {
 			sbPostData.append("&mobile=" + user.getMobileNumber());
 			// sbPostData.append("&message=" + "FriendlyApp Your otp is " +
 			// user.getOtp());
-			sbPostData.append("&email=" + user.getEmail());
+			// sbPostData.append("&email=" + user.getEmail());
 			sbPostData.append("&otp=" + user.getOtp());
 
 			System.out.println(sbPostData.toString());
@@ -83,12 +156,12 @@ public class DummyTest {
 
 			JSONObject jsonObject = response.asJson().getBody().getArray().getJSONObject(0);
 
-			if(jsonObject.getString("type").equalsIgnoreCase("success")){
+			if (jsonObject.getString("type").equalsIgnoreCase("success")) {
 				System.out.println("success");
-			}else {
+			} else {
 				System.out.println("false");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

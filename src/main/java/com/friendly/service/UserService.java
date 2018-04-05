@@ -1,5 +1,7 @@
 package com.friendly.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ public class UserService {
 
 	public User findUserOne(User user) throws Exception {
 		return userDAO.findUserOne(user);
+	}
+	
+	public List<User> getAllUsersList(List<String> lists) throws Exception {
+		return userDAO.getAllUsersList(lists);
 	}
 
 }

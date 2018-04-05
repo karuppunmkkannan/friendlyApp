@@ -8,7 +8,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * @author karuppusamy
@@ -21,10 +24,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.friendly.model")
 @ComponentScan("com.friendly")
 @EnableJpaRepositories("com.friendly.dao")
-public class Application {
+@Import({ AppWebSocketConfig.class })
+public class Application extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LoggerInterceptor());
 	}
 
 }

@@ -5,8 +5,11 @@ package com.friendly.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Karuppusamy
@@ -17,10 +20,13 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class User implements Serializable {
 
+	
+
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", mobileNumber=" + mobileNumber + ", emailVerified=" + emailVerified
-				+ ", mobileVerified=" + mobileVerified + ", otp=" + otp + ", email=" + email + "]";
+		return "User [userName=" + userName + ", mobileNumber=" + mobileNumber + ", userImg=" + userImg
+				+ ", emailVerified=" + emailVerified + ", userStatus=" + userStatus + ", mobileVerified="
+				+ mobileVerified + ", otp=" + otp + ", email=" + email + ", token=" + token + "]";
 	}
 
 	/**
@@ -28,13 +34,67 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = -1425383660285233845L;
 
+	@Column(name="userName")
+	@JsonProperty(value = "userName")
 	private String userName;
 
+	@Id
+	@Column(name="mobileNumber")
+	@JsonProperty(value = "mobileNumber")
 	private String mobileNumber;
-
+	
+	
+	@Column(name="userImg")
+	@JsonProperty(value = "userImg")
+	private String userImg;
+	
+	@Column(name="emailVerified")
+	@JsonProperty(value = "emailVerified")
 	private String emailVerified;
 	
+	@Column(name="userStatus")
+	@JsonProperty(value = "userStatus")
 	private String userStatus;
+	
+	@Column(name="mobileVerified")
+	@JsonProperty(value = "mobileVerified")
+	private String mobileVerified;
+
+	@Column(name="otp")
+	@JsonProperty(value = "otp")
+	private String otp;
+	
+	@Column(name="email")
+	@JsonProperty(value = "email")
+	private String email;
+
+	@Column(name="token")
+	@JsonProperty(value = "token")
+	private String token;
+	
+	public String getUserImg() {
+		return userImg;
+	}
+
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
+	
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public String getStatus() {
 		return userStatus;
@@ -60,20 +120,13 @@ public class User implements Serializable {
 		this.mobileVerified = mobileVerified;
 	}
 
-	private String mobileVerified;
-
-	private long otp;
-
-	public long getOtp() {
+	public String getOtp() {
 		return otp;
 	}
 
-	public void setOtp(long otp) {
+	public void setOtp(String otp) {
 		this.otp = otp;
 	}
-
-	@Id
-	private String email;
 
 	public String getUserName() {
 		return userName;
