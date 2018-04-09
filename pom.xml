@@ -6,7 +6,7 @@
 	<artifactId>friendlyApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>friendlyApp</name>
+	<name>friendly</name>
 
 	<url>http://maven.apache.org</url>
 
@@ -126,7 +126,7 @@
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
-				<finalName>friendlyApp</finalName>
+				<finalName>friendly</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
