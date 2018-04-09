@@ -1,0 +1,1 @@
+ Username: userADD Password: admin Database Name: friendly Connection URL: mysql://mysql:3306/
