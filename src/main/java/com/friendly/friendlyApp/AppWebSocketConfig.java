@@ -11,12 +11,13 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 public class AppWebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/chat","/errors");
+		config.enableSimpleBroker("/chat", "/errors");
 		config.setApplicationDestinationPrefixes("/app");
 	}
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/friendlyws").setAllowedOrigins("*").withSockJS();
+		registry.addEndpoint("/friendlyws").addInterceptors(new HttpHandshakeInterceptor()).setAllowedOrigins("*")
+				.withSockJS();
 	}
 }

@@ -1,14 +1,11 @@
 package com.friendly.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.ui.ModelMap;
@@ -56,7 +53,7 @@ public class MainController {
 	@RequestMapping("/")
 	String home() {
 		logger.info("Friendly application started...");
-		messagingTemplate.convertAndSend("/chat/msg", "Welvome...");
+		messagingTemplate.convertAndSend("/chat/msg", "Welcome...");
 		return "Friendly application started...";
 	}
 
@@ -111,7 +108,6 @@ public class MainController {
 				modelMap.addAttribute("message", "Wrong OTP, please enter correct otp.we send otp now..");
 				modelMap.addAttribute("data", userservice.insertUserService(Utility.sendOtp(user)));
 			}
-			
 		} catch (Exception e) {
 			logger.error("Exception in login", e);
 		}
