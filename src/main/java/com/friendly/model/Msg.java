@@ -23,6 +23,33 @@ public class Msg implements Serializable {
 	 * 
 	 */
 
+	@JsonProperty(value = "fromUser")
+	private User fromUser;
+
+	@JsonProperty(value = "toUser")
+	private User toUser;
+
+	public User getFromUser() {
+		return fromUser;
+	}
+
+	public void setFromUser(User fromUser) {
+		this.fromUser = fromUser;
+	}
+
+	@Override
+	public String toString() {
+		return "Msg [fromUser=" + fromUser + ", toUser=" + toUser + ", msg=" + msg + "]";
+	}
+
+	public User getToUser() {
+		return toUser;
+	}
+
+	public void setToUser(User toUser) {
+		this.toUser = toUser;
+	}
+
 	@JsonProperty(value = "msg")
 	private String msg;
 
@@ -32,11 +59,6 @@ public class Msg implements Serializable {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
-	}
-
-	@Override
-	public String toString() {
-		return "Msg [msg=" + msg + "]";
 	}
 
 }

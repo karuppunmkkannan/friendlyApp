@@ -72,6 +72,10 @@ public class User implements Serializable {
 	@JsonProperty(value = "token")
 	private String token;
 	
+	@Column(name="location")
+	@JsonProperty(value = "location")
+	private String location;
+	
 	public String getUserImg() {
 		return userImg;
 	}

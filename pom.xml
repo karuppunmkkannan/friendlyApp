@@ -34,6 +34,22 @@
 			<version>4.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Need this to compile JSP, tomcat-embed-jasper version is not working, 
+			no idea why -->
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -143,5 +159,19 @@
 		</profile>
 	</profiles>
 
-	
+	<!-- <build>
+		<finalName>friendly</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<warName>unicity</warName>
+					<outputDirectory>E:\Tools\apache-tomcat-8.0.45-windows\webapps</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build> -->
+
+
 </project>

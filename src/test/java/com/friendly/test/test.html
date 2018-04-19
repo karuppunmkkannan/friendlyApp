@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 </head>
@@ -15,21 +16,22 @@
 			console.log("WebSocket is supported by your Browser!");
 
 			// Let us open a web socket
-			var socket = new SockJS("http://localhost:8080/friendly/friendlyws"); 
+			//	var socket = new SockJS("http://localhost:8080/friendly/friendlyws");
+			var socket = new WebSocket("ws://192.168.1.109:8080/friendly/friendlyws");
 			ws = Stomp.over(socket);
 
 			ws.connect({}, function(frame) {
 				console.log("Connected ====" + frame);
-				
+
 				ws.subscribe("/errors", function(message) {
 					alert("Error " + message.body);
 				});
-				
+
 				ws.subscribe("/chat/msg", function(message) {
-					alert("msg " + message.body);
+					var g = JSON.parse(message.body);
+					alert("msg " +g.msg);
 				});
-				
-				
+
 			}, function(error) {
 				console.log("STOMP error " + error);
 			});

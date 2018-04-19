@@ -2,7 +2,6 @@
 package com.friendly.test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -51,13 +50,6 @@ public class DummyTest {
 	public void testWebSockets() {
 
 		try {
-			System.out.print(" nmk ");
-			Integer[] primes = { 2, 7, 5, 3 };
-			MySort ms = new MySort();
-			Arrays.sort(primes, ms);
-			for (Integer p2 : primes) {
-				System.out.print(p2 + " ");
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +58,20 @@ public class DummyTest {
 	}
 
 	@Test
+	@Ignore
+	public void testsockets() {
+
+		try {
+			System.out.println("nmk");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	@Ignore
 	public void testEmail() {
 		try {
 
@@ -94,6 +100,7 @@ public class DummyTest {
 	}
 
 	@Test
+	@Ignore
 	public void testsnumberString() {
 
 		ArrayList<String> m = new ArrayList<>();
@@ -124,6 +131,7 @@ public class DummyTest {
 	}
 
 	@Test
+	@Ignore
 	public void tests() {
 
 	}

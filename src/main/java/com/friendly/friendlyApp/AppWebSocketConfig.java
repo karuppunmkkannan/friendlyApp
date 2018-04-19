@@ -18,6 +18,6 @@ public class AppWebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/friendlyws").addInterceptors(new HttpHandshakeInterceptor()).setAllowedOrigins("*")
-				.withSockJS();
+				/*.withSockJS()*/;
 	}
 }

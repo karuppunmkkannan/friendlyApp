@@ -11,6 +11,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
+import com.friendly.model.Msg;
 import com.friendly.model.User;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -79,7 +80,7 @@ public abstract class Utility {
 		return user;
 	}
 
-	public static boolean sendFcmMessage(User user) {
+	public static void sendFcmMessage(Msg msg) {
 		try {
 
 			httpHeaders.set("Authorization", "key=" + fcmApiKey);
@@ -88,15 +89,15 @@ public abstract class Utility {
 
 			JSONObject notification = new JSONObject();
 			notification.put("title", "FriendlyApp");
-			notification.put("body", "Hi " + user.getUserName() + " Welcome to FriendlyApp");
+			notification.put("body", "Msg From " + msg.getFromUser().getUserName());
 
 			JSONObject data = new JSONObject();
-			data.put("msg", "Welcome");
+			data.put("msg", msg.getMsg());
 
 			body.put("priority", "high");
 			body.put("notification", notification);
 			body.put("data", data);
-			body.put("to", user.getToken());
+			body.put("to", msg.getToUser().getToken());
 
 			HttpEntity<String> httpEntity = new HttpEntity<String>(body.toString(), httpHeaders);
 			String response = restTemplate.postForObject(fcmServerUrl, httpEntity, String.class);
@@ -107,7 +108,6 @@ public abstract class Utility {
 			logger.error("Exception in sendFcmMessage", e);
 		}
 
-		return true;
 	}
 
 }
