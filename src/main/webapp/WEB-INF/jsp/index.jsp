@@ -108,8 +108,8 @@ height:100%;
 			console.log("WebSocket is supported by your Browser!");
 
 			// Let us open a web socket
-			//	var socket = new SockJS("http://localhost:8080/friendly/friendlyws");
-			var socket = new WebSocket("ws://localhost:8080/friendly/friendlyws");
+			//var socket = new SockJS("http://localhost:8080/friendly/friendlyws");
+			var socket = new WebSocket("ws://friendly-friendly.7e14.starter-us-west-2.openshiftapps.com/friendlyws");
 			ws = Stomp.over(socket);
 
 			ws.connect({}, function(frame) {
