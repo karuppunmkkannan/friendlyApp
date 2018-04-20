@@ -109,7 +109,7 @@ height:100%;
 
 			// Let us open a web socket
 			//	var socket = new SockJS("http://localhost:8080/friendly/friendlyws");
-			var socket = new WebSocket("ws://friendlyapp-friendlyapp.7e14.starter-us-west-2.openshiftapps.com/friendly/friendlyws");
+			var socket = new WebSocket("ws://localhost:8080/friendly/friendlyws");
 			ws = Stomp.over(socket);
 
 			ws.connect({}, function(frame) {
